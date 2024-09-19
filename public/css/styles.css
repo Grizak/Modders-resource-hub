@@ -25,3 +25,72 @@ nav ul li a {
 main {
   padding: 2rem;
 }
+
+/* Footer Styles */
+.footer {
+  background-color: #333;
+  color: #fff;
+  padding: 40px 0;
+  text-align: center;
+  font-size: 14px;
+}
+
+.footer-content {
+  display: flex;
+  justify-content: space-between;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.footer-section {
+  flex-basis: 30%;
+  margin-bottom: 20px;
+}
+
+.footer-section h2 {
+  color: #f9c74f;
+  margin-bottom: 15px;
+  font-size: 18px;
+  text-transform: uppercase;
+}
+
+.footer-section p {
+  line-height: 1.8;
+  font-size: 14px;
+}
+
+.footer-section ul {
+  list-style: none;
+  padding: 0;
+}
+
+.footer-section ul li {
+  margin: 5px 0;
+}
+
+.footer-section ul li a {
+  color: #f9c74f;
+  text-decoration: none;
+}
+
+.footer-section ul li a:hover {
+  text-decoration: underline;
+}
+
+.footer-bottom {
+  padding: 20px 0;
+  border-top: 1px solid #777;
+  font-size: 12px;
+}
+
+.socials a {
+  margin-right: 15px;
+  display: inline-block;
+}
+
+.socials img {
+  width: 20px;
+  height: 20px;
+  filter: invert(100%); /* Make icons white */
+}

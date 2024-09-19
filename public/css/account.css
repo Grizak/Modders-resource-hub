@@ -1,0 +1,97 @@
+/* General page layout */
+body {
+  font-family: 'Arial', sans-serif;
+  background-color: #f9f9f9;
+  margin: 0;
+  padding: 0;
+}
+
+.account-main {
+  max-width: 1200px;
+  margin: 20px auto;
+  padding: 20px;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.account-details h1 {
+  font-size: 2rem;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.account-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.info-item {
+  width: 60%;
+  background-color: #f0f0f0;
+  padding: 20px;
+  border-radius: 8px;
+  margin-right: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+}
+
+.info-item h2 {
+  margin-bottom: 10px;
+  color: #555;
+}
+
+.info-item p {
+  font-size: 1rem;
+  color: #666;
+}
+
+.action-buttons {
+  display: flex;
+  flex-direction: column;
+}
+
+.action-buttons .btn {
+  padding: 10px 20px;
+  font-size: 1rem;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-bottom: 10px;
+  transition: background-color 0.3s ease;
+}
+
+.btn-primary {
+  background-color: #4CAF50;
+  color: white;
+}
+
+.btn-primary:hover {
+  background-color: #45a049;
+}
+
+.btn-secondary {
+  background-color: #008CBA;
+  color: white;
+}
+
+.btn-secondary:hover {
+  background-color: #007bb5;
+}
+
+/* Mobile responsive */
+@media (max-width: 768px) {
+  .account-info {
+    flex-direction: column;
+  }
+
+  .info-item {
+    width: 100%;
+    margin-right: 0;
+    margin-bottom: 20px;
+  }
+
+  .action-buttons {
+    width: 100%;
+  }
+}

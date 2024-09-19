@@ -15,8 +15,13 @@
       <li><a href="/mods">Mods</a></li>
       <li><a href="/resources">Resources</a></li>
       <li><a href="/tutorials">Tutorials</a></li>
+      <% if (!user) { %>
       <li><a href="/login">Login</a></li>
       <li><a href="/register">Register</a></li>
+      <% } else { %>
+        <li><a href="/account">My Account</a></li>
+        <li><a href="/logout">Logout</a></li>  
+      <% } %>
     </ul>
   </nav>
 </header>

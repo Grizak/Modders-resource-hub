@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Account</title>
+  <link rel="stylesheet" href="/public/css/account.css"> <!-- Link to your custom CSS file -->
+</head>
+<body>
+  <%- include('partials/header') %> <!-- Include the header -->
+
+  <main class="account-main">
+    <section class="account-details">
+      <h1>Welcome, <%= user.username %>!</h1>
+      <div class="account-info">
+        <div class="info-item">
+          <h2>Account Information</h2>
+          <p><strong>Username:</strong> <%= user.username %></p>
+        </div>
+        <div class="action-buttons">
+          <button class="btn btn-primary">Edit Account</button>
+          <button class="btn btn-secondary">Change Password</button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <%- include('partials/footer') %> <!-- Include the footer -->
+</body>
+</html>
