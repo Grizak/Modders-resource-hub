@@ -54,7 +54,7 @@ app.get('/tutorials', isAuthenticated, (req, res) => {
 
 // Route for the Login page
 app.get('/login', (req, res) => {
-  res.render('login');
+  res.render('login', { errorMessage: null }); // Pass null or an empty string when there’s no error
 });
 
 // Handle login form submissions
@@ -67,9 +67,11 @@ app.post('/login', async (req, res) => {
     req.session.user = { username: user.username };
     res.redirect('/');
   } else {
-    res.redirect('/login?error=Invalid credentials');
+    // Pass error message to the login page
+    res.render('login', { errorMessage: 'Invalid credentials' });
   }
 });
+
 
 // Route to handle logout
 app.get('/logout', (req, res) => {
