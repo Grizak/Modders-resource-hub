@@ -3,20 +3,22 @@ const bodyParser = require('body-parser');
 const session = require('express-session');
 const mongoose = require('mongoose');
 const User = require('./models/user');
-const bcrypt = require('bcryptjs'); // bcryptjs instead of bcrypt
+const bcrypt = require('bcryptjs');
 const app = express();
 const MongoStore = require('connect-mongo');
 
 // Set the view engine to EJS
 app.set('view engine', 'ejs');
 
-// Connect to MongoDB
-mongoose.connect('mongodb://localhost:27017/moddershub', {})
-  .then(()=> {
-    console.log('Connected to MongoDB');
-}).catch(err => {
-  console.error('Error connecting to MongoDB:', err);
-});
+mongoose.connect('mongodb://localhost:27017/moddershub', {
+  useNewUrlParser: true,
+  useUnifiedTopology: true
+})
+  .then(() => console.log('Connected to MongoDB'))
+  .catch(err => {
+    console.error('Error connecting to MongoDB:', err.message);
+    // Render an error page if needed
+  });
 
 function isAuthenticated(req, res, next) {
   if (req.session.user) {
@@ -51,8 +53,12 @@ const users = [
 
 // Home route
 app.get('/', (req, res) => {
-  res.render('index');
+  if (mongoose.connection.readyState !== 1) { // If MongoDB is not connected
+    return res.status(500).send('Service is currently unavailable. Please try again later.');
+  }
+  res.render('index'); // Your homepage
 });
+
 
 // Route for the Mods page
 app.get('/mods', isAuthenticated, (req, res) => {
@@ -82,26 +88,27 @@ app.get('/sorry', (req, res) => {
   res.render('sorry')
 });
 
-app.get('/logedout', (req, res) => {
+app.get('/logedout', isAuthenticated, (req, res) => {
   res.render('logedout')
 })
 
-app.get('/account', (req, res) => {
+app.get('/account', isAuthenticated, (req, res) => {
   res.render('account')
 })
+/*
 app.post('/login', async (req, res) => {
   const { username, password } = req.body;
 
   // Find the user in the database
   const user = await User.findOne({ username });
   if (!user) {
-    return res.render('login', { errorMessage: 'Invalid username or password' });
+    return res.render('login', { errorMessage: 'Invalid Username' });
   }
 
   // Compare passwords
   const isMatch = await bcrypt.compare(password, user.passwordHash);
   if (!isMatch) {
-    return res.render('login', { errorMessage: 'Invalid username or password' });
+    return res.render('login', { errorMessage: 'Invalid password' });
   }
 
   // Save the session or authentication token
@@ -139,7 +146,7 @@ app.post('/register', async (req, res) => {
 
   res.redirect('/login');
 });
-
+*/
 
 // Start the server
 const PORT = 3001;
